@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core_Service_MiddleWare.Models;
+using Core_Service_MiddleWare.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core_Service_MiddleWare.Controllers
@@ -9,6 +11,11 @@ namespace Core_Service_MiddleWare.Controllers
    
     public class HomeController : Controller
     {
+        private readonly IRepository<Student> _repository;
+        public HomeController(IRepository<Student> repository)
+        {
+            _repository = repository;
+        }
         public IActionResult Index()
         {
             return Content("Hello From HomeController");
@@ -16,7 +23,8 @@ namespace Core_Service_MiddleWare.Controllers
 
         public IActionResult Index2()
         {
-            return Content("Index2");
+            var models = _repository.GetAll();
+            return View(models);
         }
     }
 }

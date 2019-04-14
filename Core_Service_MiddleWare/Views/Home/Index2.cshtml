@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Core_Service_MiddleWare.Models.Student>
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Helle From Index2.cshtml</title>
+</head>
+<body>
+    @{ 
+        foreach(var item in Model)
+        {
+            <h1>@item.Name</h1>
+        }
+    }
+</body>
+</html>

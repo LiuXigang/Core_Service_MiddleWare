@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Threading.Tasks;
+using Core_Service_MiddleWare.Models;
 using Core_Service_MiddleWare.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,6 +21,8 @@ namespace Core_Service_MiddleWare
             services.AddMvc();
             //服务注册
             services.AddSingleton<IWelcomService, WelcomService>();
+
+            services.AddScoped<IRepository<Student>, InMemoryRepository>();
         }
         
         public void Configure(
