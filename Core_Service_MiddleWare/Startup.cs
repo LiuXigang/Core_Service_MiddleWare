@@ -17,6 +17,7 @@ namespace Core_Service_MiddleWare
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
             //服务注册
             services.AddSingleton<IWelcomService, WelcomService>();
         }
@@ -35,6 +36,11 @@ namespace Core_Service_MiddleWare
             {
                 app.UseExceptionHandler();
             }
+            app.UseStaticFiles();
+            app.UseMvc(builder =>
+            {
+                builder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+            });
 
             //中间件
             app.Use(next =>
