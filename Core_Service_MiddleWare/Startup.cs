@@ -22,7 +22,7 @@ namespace Core_Service_MiddleWare
             //服务注册
             services.AddSingleton<IWelcomService, WelcomService>();
 
-            services.AddScoped<IRepository<Student>, InMemoryRepository>();
+            services.AddSingleton<IRepository<Student>, InMemoryRepository>();
         }
         
         public void Configure(
