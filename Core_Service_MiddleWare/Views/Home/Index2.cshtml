@@ -1,7 +1,4 @@
 ﻿@model IEnumerable<Core_Service_MiddleWare.Models.Student>
-@{ 
-    Layout = null;
-}
 
 <!DOCTYPE html>
 
@@ -11,10 +8,12 @@
     <title>Helle From Index2.cshtml</title>
 </head>
 <body>
-    @{ 
-        foreach(var item in Model)
-        {
-            <h1>@item.Name  @item.gender</h1>
+    @{
+        <h1>test</h1>
+    }
+    @section bottom{
+        @{
+            <h1>111</h1>
         }
     }
 </body>
