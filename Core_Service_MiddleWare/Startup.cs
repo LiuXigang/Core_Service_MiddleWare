@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 
 namespace Core_Service_MiddleWare
@@ -52,7 +54,12 @@ namespace Core_Service_MiddleWare
             {
                 app.UseExceptionHandler();
             }
-            app.UseStaticFiles();
+            app.UseStaticFiles();//wwwroot文件夹
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                RequestPath = "/node_modules",
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath + "/node_modules")),
+            });
             app.UseMvc(builder =>
             {
                 builder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");

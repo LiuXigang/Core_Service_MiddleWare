@@ -4,14 +4,24 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
 </head>
 <body>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">SVN</a></li>
+        <li><a href="#">iOS</a></li>
+        <li><a href="#">VB.Net</a></li>
+        <li><a href="#">Java</a></li>
+        <li><a href="#">PHP</a></li>
+    </ul>
     <h1>Layout</h1>
     <div>
         @RenderBody()
     </div>
     <div>
-        @RenderSection("bottom",false)
+        @RenderSection("bottom", false)
     </div>
 </body>
 </html>
