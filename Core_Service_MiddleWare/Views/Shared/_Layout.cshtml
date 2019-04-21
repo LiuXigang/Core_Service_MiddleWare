@@ -1,27 +1,54 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+<!DOCTYPE html>
+@inject SignInManager<IdentityUser> _signIn
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function Logout() {
+            $.ajax({
+                url:"@Url.Action("Logout","Accout")",
+                dataType: "json",
+                type: "POST",
+                success: function () {},
+                error: function () { }
+            });
+        }
+    </script>
 </head>
 <body>
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">SVN</a></li>
-        <li><a href="#">iOS</a></li>
-        <li><a href="#">VB.Net</a></li>
-        <li><a href="#">Java</a></li>
-        <li><a href="#">PHP</a></li>
-    </ul>
-    <h1>Layout</h1>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">MyStudyDemo</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    @if (_signIn.IsSignedIn(User))
+                    {
+                        <li><a href="javascript:Logout();" >登出</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-action="Login" asp-controller="Accout">登录</a></li>
+                        <li><a asp-action="Register" asp-controller="Accout">注册</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div>
         @RenderBody()
     </div>
     <div>
         @RenderSection("bottom", false)
     </div>
+
+    
 </body>
 </html>
