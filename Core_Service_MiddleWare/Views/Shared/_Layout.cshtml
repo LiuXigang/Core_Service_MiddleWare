@@ -9,17 +9,6 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-        function Logout() {
-            $.ajax({
-                url:"@Url.Action("Logout","Accout")",
-                dataType: "json",
-                type: "POST",
-                success: function () {},
-                error: function () { }
-            });
-        }
-    </script>
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -31,7 +20,11 @@
                 <ul class="nav navbar-nav">
                     @if (_signIn.IsSignedIn(User))
                     {
-                        <li><a href="javascript:Logout();" >登出</a></li>
+                        <li>
+                            <form asp-action="Logout" asp-controller="Accout" method="post">
+                                <input type="submit" value="登出" />
+                            </form>
+                        </li>
                     }
                     else
                     {

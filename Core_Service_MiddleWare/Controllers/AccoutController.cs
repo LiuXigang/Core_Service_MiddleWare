@@ -72,7 +72,7 @@ namespace Core_Service_MiddleWare.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return Json(true);
+            return RedirectToAction(nameof(Login));
         }
     }
 }
